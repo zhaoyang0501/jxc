@@ -18,11 +18,10 @@
         </header>
         <footer class="ui-footer ui-footer-btn">
             <ul class="ui-tiled ui-border-t">
-                <li data-href="index.html" class="ui-border-r"><div>首页</div></li>
                   <li data-href="ui.html" class="ui-border-r"><div>进货</div></li>
                     <li data-href="ui.html" class="ui-border-r"><div>出货</div></li>
-                      <li data-href="ui.html" class="ui-border-r"><div>库存</div></li>
-                <li data-href="ui.html" class="ui-border-r"><div>元器件分类</div></li>
+                   <li data-href="ui.html" class="ui-border-r"><div>库存</div></li>
+                <li data-href="ui.html" class="ui-border-r"><div>分类</div></li>
                 <li data-href="ui.html" class="ui-border-r"><div>帮助</div></li>
             </ul>
         </footer>
@@ -31,40 +30,62 @@
 
 
 <section id="list">
-    <div class="demo-item">
+      <div class="demo-item">
+        <p class="demo-desc">进货</p>
         <div class="demo-block">
-            <ul class="ui-list ui-list-pure ui-border-b">
-                <li class="ui-border-t" data-href="type.html">
-                  文本
-                </li>
-                <li class="ui-border-t" data-href="icon.html">
-                  图标
-                </li>
-                <li class="ui-border-t" data-href="layout.html">
-                  布局
-                </li>
-                <li class="ui-border-t" data-href="grid.html">
-                  网格
-                </li>
-                <li class="ui-border-t" data-href="arrowlink.html">
-                  箭头链接
-                </li>
-                <li class="ui-border-t" data-href="border.html">
-                  1px解决方案
-                </li>
-                <li class="ui-border-t" data-href="nowrap.html">
-                  文字截断
-                </li>
-                <li class="ui-border-t" data-href="placehold.html">
-                  占位
-                </li>
-                <li class="ui-border-t" data-href="whitespace.html">
-                  两端留白
-                </li>
-                <li class="ui-border-t" data-href="justify.html">
-                  两端对齐
-                </li>
-            </ul>
+            <div class="ui-form ui-border-t">
+                <form action="#">
+              	 <div class="ui-form-item ui-border-b">
+                        <label>日期</label>
+                        <div class="ui-select-group">
+                            <div class="ui-select">
+                                <select>
+                                    <option>2014</option>
+                                    <option selected="">2015</option>
+                                    <option>2016</option>
+                                </select>
+                            </div>
+                            <div class="ui-select">
+                                <select>
+                                    <option>03</option>
+                                    <option selected="">04</option>
+                                    <option>05</option>
+                                </select>
+                            </div>
+                            <div class="ui-select">
+                                <select>
+                                    <option>21</option>
+                                    <option selected="">22</option>
+                                    <option>23</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="ui-form-item ui-border-b">
+                        <label>
+                           	数量
+                        </label>
+                        <input type="text" placeholder="请输入数量" />
+                        <a href="#" class="ui-icon-close">
+                        </a>
+                    </div>
+                    
+                    <div class="ui-form-item ui-border-b">
+                        <label>
+                           	价格
+                        </label>
+                        <input type="text" placeholder="请输入价格" />
+                        <a href="#" class="ui-icon-close">
+                        </a>
+                    </div>
+                    <div class="ui-btn-wrap">
+               		 <button class="ui-btn-lg ui-btn-primary">
+		                 		   确定
+		                </button>
+		            </div>
+                </form>
+            </div>
         </div>
     </div>
 </section>
