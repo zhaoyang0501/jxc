@@ -18,7 +18,7 @@
         </header>
         <footer class="ui-footer ui-footer-btn">
             <ul class="ui-tiled ui-border-t">
-                   <li data-href="index.html" class="ui-border-r"><div>进货</div></li>
+                 <li data-href="index.html" class="ui-border-r"><div>进货</div></li>
                    <li data-href="sell.html" class="ui-border-r"><div>出货</div></li>
                    <li data-href="mx.html" class="ui-border-r"><div>明细</div></li>
                    <li data-href="kc.html" class="ui-border-r"><div>库存</div></li>
@@ -31,7 +31,7 @@
 
 <section id="list">
       <div class="demo-item">
-        <p class="demo-desc">进货</p>
+        <p class="demo-desc">出货</p>
         <div class="demo-block">
             <div class="ui-form ui-border-t">
                 <form action="#">
@@ -48,9 +48,12 @@
                             </div>
                         </div>
                     </div>
-                    
+                    <div class="ui-form-item ui-form-item-show ui-border-b">
+                        <label for="#">库存数量</label>
+                        <input type="text" value="3" style="color: red">
+                    </div>
               	 <div class="ui-form-item ui-border-b">
-                        <label>日期</label>
+                        <label>当前库存</label>
                         <div class="ui-select-group">
                             <div class="ui-select">
                                 <select>
@@ -78,9 +81,9 @@
                     
                     <div class="ui-form-item ui-border-b">
                         <label>
-                           	数量
+                           	出库数量
                         </label>
-                        <input type="text" placeholder="请输入数量" />
+                        <input type="text" placeholder="出库数量不得大于库存" />
                         <a href="#" class="ui-icon-close">
                         </a>
                     </div>
