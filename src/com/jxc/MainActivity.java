@@ -15,7 +15,6 @@ import android.widget.Toast;
 
 @SuppressLint("JavascriptInterface")
 public class MainActivity extends Activity {
-	private Handler mHandler = new Handler();
 	private WebView webView;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

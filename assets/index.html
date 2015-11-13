@@ -31,7 +31,7 @@
 
 <section id="list">
       <div class="demo-item">
-        <p class="demo-desc"><a onClick="window.demo.startFunction()">进货                     chikc</a></p>
+        <p class="demo-desc">进货             </p>
         <div class="demo-block">
             <div class="ui-form ui-border-t">
                 <form action="#">
@@ -77,7 +77,7 @@
                         <label>
                            	数量
                         </label>
-                        <input type="text" placeholder="请输入数量" />
+                        <input type="text" placeholder="请输入数量"  id='num'/>
                         <a href="#" class="ui-icon-close">
                         </a>
                     </div>
@@ -91,7 +91,7 @@
                         </a>
                     </div>
                     <div class="ui-btn-wrap">
-               		 <button id="btid" class="ui-btn-lg ui-btn-primary" onclick="window.app.getjson('categoys','ddd')">
+               		 <button id="btid" class="ui-btn-lg ui-btn-primary" onclick="fun_buy()">
 		                 		   确定
 		                </button>
 		            </div>
@@ -107,18 +107,21 @@
         <script>
         
         $(function(){
-        	alert("fuck3");
-        	window.app.getjson("categoys?1=123","init_categorys_callback");
+        	window.app.getjson("categorys?1=123","init_categorys_callback");
         })
       	
         function init_categorys_callback(String){
         	alert(String);
         	var obj = $.parseJSON(String);
-        	alert(obj.length);
         	$("#categorys").empty();
         	for(i=0;i<obj.length;i++){
         		$("#categorys").append( "<option value='"+obj[i].id+"'>"+obj[i].name+"</option>");
         	}
+        }
+        
+        function fun_buy(){
+        	var p="cid="+$("#categorys").val()+"&num="+$("#num").val()+"&price=";
+        	
         }
         
         $('.ui-list li,.ui-tiled li').click(function(){
