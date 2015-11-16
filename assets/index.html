@@ -86,7 +86,7 @@
                         <label>
                            	价格
                         </label>
-                        <input type="text" placeholder="请输入价格" />
+                        <input id='price' type="text" placeholder="请输入价格" />
                         <a href="#" class="ui-icon-close">
                         </a>
                     </div>
@@ -115,13 +115,16 @@
         	var obj = $.parseJSON(String);
         	$("#categorys").empty();
         	for(i=0;i<obj.length;i++){
-        		$("#categorys").append( "<option value='"+obj[i].id+"'>"+obj[i].name+"</option>");
+        		$("#categorys").append("<option value='"+obj[i].id+"'>"+obj[i].name+"</option>");
         	}
         }
         
         function fun_buy(){
-        	var p="cid="+$("#categorys").val()+"&num="+$("#num").val()+"&price=";
-        	
+        	var p="cid="+$("#categorys").val()+"&num="+$("#num").val()+"&price="+$("#price").val();
+        	window.app.getjson("buy?"+p,"buy_callback");
+        }
+        function buy_callback(result){
+        	alert(result.tip);
         }
         
         $('.ui-list li,.ui-tiled li').click(function(){

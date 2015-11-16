@@ -50,8 +50,7 @@ public class MainActivity extends Activity {
 	  public void getjson(final String url,final String callback) {  
 	        Toast.makeText(this, "js调用了java函数", Toast.LENGTH_SHORT).show();  
 	        new Thread() {  
-	            @Override  
-	            public void run() {  
+	            public void run(){  
 	            	try {
 	            		final String  json= HttpClientUtil.doGet(url);
 	            		webView.post(new Runnable() {
@@ -66,5 +65,4 @@ public class MainActivity extends Activity {
 	            }  
 	        }.start();
 	   }  
-	  
 }
