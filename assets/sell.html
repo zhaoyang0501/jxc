@@ -40,50 +40,21 @@
                         <label>元器件分类</label>
                         <div class="ui-select-group">
                             <div class="ui-select" >
-                                <select>
-                                    <option>二极管</option>
-                                    <option selected="">二极管</option>
-                                    <option>二极管</option>
+                                <select id='categorys' onchange="fun_change()">
+                                   
                                 </select>
                             </div>
                         </div>
                     </div>
                     <div class="ui-form-item ui-form-item-show ui-border-b">
                         <label for="#">库存数量</label>
-                        <input type="text" value="3" style="color: red">
+                        <input id='num' type="text" value="" style="color: red">
                     </div>
-              	 <div class="ui-form-item ui-border-b">
-                        <label>当前库存</label>
-                        <div class="ui-select-group">
-                            <div class="ui-select">
-                                <select>
-                                    <option>2014</option>
-                                    <option selected="">2015</option>
-                                    <option>2016</option>
-                                </select>
-                            </div>
-                            <div class="ui-select">
-                                <select>
-                                    <option>03</option>
-                                    <option selected="">04</option>
-                                    <option>05</option>
-                                </select>
-                            </div>
-                            <div class="ui-select">
-                                <select>
-                                    <option>21</option>
-                                    <option selected="">22</option>
-                                    <option>23</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    
                     <div class="ui-form-item ui-border-b">
                         <label>
                            	出库数量
                         </label>
-                        <input type="text" placeholder="出库数量不得大于库存" />
+                        <input id='num1' type="text" placeholder="出库数量不得大于库存" />
                         <a href="#" class="ui-icon-close">
                         </a>
                     </div>
@@ -92,12 +63,12 @@
                         <label>
                            	价格
                         </label>
-                        <input type="text" placeholder="请输入价格" />
+                        <input id='price' type="text" placeholder="请输入价格" />
                         <a href="#" class="ui-icon-close">
                         </a>
                     </div>
                     <div class="ui-btn-wrap">
-               		 <button class="ui-btn-lg ui-btn-primary">
+               		     <button class="ui-btn-lg ui-btn-primary" onclick="fun_sell()">
 		                 		   确定
 		                </button>
 		            </div>
@@ -111,6 +82,35 @@
  
         </section><!-- /.ui-container-->
         <script>
+        $(function(){
+        	window.app.getjson("categorys?1=123","init_categorys_callback");
+        })
+      	
+        function fun_change(){
+        	if( $("#categorys").val()!=null){
+        		window.app.getjson("category/"+$("#categorys").val(),"init_category_callback");
+        	}
+        }
+        function init_category_callback(String){
+        	var obj = $.parseJSON(String);
+        	$("#num").val(obj.num);
+        }
+        function init_categorys_callback(String){
+        	var obj = $.parseJSON(String);
+        	$("#categorys").empty();
+        	 $("#categorys").append("<option value=''>选择出库的元器件</option>");
+        	for(i=0;i<obj.length;i++){
+        		$("#categorys").append("<option value='"+obj[i].id+"'>"+obj[i].name+"</option>");
+        	}
+        }
+        
+        function fun_sell(){
+        	var p="cid="+$("#categorys").val()+"&num="+$("#num1").val()+"&price="+$("#price").val();
+        	window.app.getjson("sell?"+p,"sell_callback");
+        }
+        function sell_callback(result){
+        	alert( $.parseJSON(result).tip);
+        }
         $('.ui-list li,.ui-tiled li').click(function(){
             if($(this).data('href')){
                 location.href= $(this).data('href');

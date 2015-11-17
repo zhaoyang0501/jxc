@@ -14,7 +14,7 @@
     
     <body ontouchstart>
         <header class="ui-header ui-header-positive ui-border-b">
-            <i class="ui-icon-return" onclick="history.back()"></i><h1>元器件进销存 </h1><button class="ui-btn">回首页</button>
+            <i class="ui-icon-return" onclick="history.back()"></i><h1> <span id='debug_'></span>元器件进销存 </h1><button class="ui-btn">回首页</button>
         </header>
         <footer class="ui-footer ui-footer-btn">
             <ul class="ui-tiled ui-border-t">
@@ -31,27 +31,9 @@
 
 <section id="list">
     <div class="demo-item">
-        <p class="demo-desc">出入库明</p>
+        <p class="demo-desc">库存</p>
         <div class="demo-block">
-            <ul class="ui-list ui-list-text ui-border-tb">
-               <li class="ui-border-t">
-                    <div class="ui-list-info">
-                        <h4 class="ui-nowrap">二极管</h4>
-                    </div>
-                    <div class="ui-badge">库存：399件</div>
-                </li>
-                 <li class="ui-border-t">
-                    <div class="ui-list-info">
-                        <h4 class="ui-nowrap">单晶硅</h4>
-                    </div>
-                    <div class="ui-badge">库存：199件</div>
-                </li>
-                 <li class="ui-border-t">
-                    <div class="ui-list-info">
-                        <h4 class="ui-nowrap">电容1-12</h4>
-                    </div>
-                    <div class="ui-badge">库存：391件</div>
-                </li>
+            <ul class="ui-list ui-list-text ui-border-tb" id='ul_'>
             </ul>
         </div>
     </div>
@@ -61,6 +43,28 @@
  
         </section><!-- /.ui-container-->
         <script>
+        function GetQueryString(name)
+        {
+             var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+             var r = window.location.search.substr(1).match(reg);
+             if(r!=null)return  unescape(r[2]); return null;
+        }
+        $(function(){
+        	window.app.getjson("categorys/"+GetQueryString("category"),"init_categorys_callback");
+        })
+      	 function init_categorys_callback(String){
+        	var obj = $.parseJSON(String);
+        	$("#ul_").empty();
+        	for(i=0;i<obj.length;i++){
+        		$("#ul_").append("<li class=\"ui-border-t\">"+
+        				 " <div class=\"ui-list-info\">"+
+					                        "  <h4 class=\"ui-nowrap\">"+obj[i].name+"</h4>"+
+					                " </div>"+
+					            "<div class=\"ui-badge\">库存："+obj[i].num+"件</div>"+
+					       " </li>");
+        	}
+        }
+        
         $('.ui-list li,.ui-tiled li').click(function(){
             if($(this).data('href')){
                 location.href= $(this).data('href');

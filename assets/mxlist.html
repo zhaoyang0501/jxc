@@ -33,35 +33,7 @@
     <div class="demo-item">
         <p class="demo-desc">出入库明</p>
         <div class="demo-block">
-            <ul class="ui-list ui-list-link ui-border-tb">
-                <li class="ui-border-t">
-                    <div class="ui-list-info">
-                        <h4 class="ui-nowrap">二极管</h4>
-                        <p class="ui-nowrap">2015-09-01 操作人：王小二</p>
-                        <div class="ui-badge-muted">入库：123</div>
-                    </div>
-                </li>
-               <li class="ui-border-t">
-                    <div class="ui-list-info">
-                        <h4 class="ui-nowrap">二极管A</h4>
-                       <p class="ui-nowrap">2015-09-01 操作人：王小二</p>
-                        <div class="ui-badge-muted">入库：11</div>
-                    </div>
-                </li>
-                 <li class="ui-border-t">
-                    <div class="ui-list-info">
-                        <h4 class="ui-nowrap">单晶硅</h4>
-                       <p class="ui-nowrap">2015-09-01 操作人：王小二</p>
-                        <div class="ui-badge-num">出库：11</div>
-                    </div>
-                </li>
-                <li class="ui-border-t">
-                    <div class="ui-list-info">
-                        <h4 class="ui-nowrap">电阻2-1</h4>
-                       <p class="ui-nowrap">2015-09-01 操作人：王小二</p>
-                        <div class="ui-badge-num">出库：11</div>
-                    </div>
-                </li>
+            <ul class="ui-list ui-list-link ui-border-tb" id='ul_'>
             </ul>
         </div>
     </div>
@@ -71,6 +43,31 @@
  
         </section><!-- /.ui-container-->
         <script>
+	        $(function(){
+	        	window.app.getjson("list/","init_list_callback");
+	        })
+        	 function init_list_callback(String){
+        	var obj = $.parseJSON(String);
+        	$("#ul_").empty();
+        	for(i=0;i<obj.length;i++){
+        		if(obj[i].type=='入库')
+        		$("#ul_").append("<li class='ui-border-t'>"+
+			                     "   <div class='ui-list-info'>"+
+			              "  <h4 class='ui-nowrap'>"+obj[i].category.name+"</h4>"+
+			              " <p class='ui-nowrap'>"+obj[i].createDate+" 操作人：王小二</p>"+
+			              "  <div class='ui-badge-muted'>"+obj[i].type+"："+obj[i].num+"</div>"+
+			           " </div>"+
+			       " </li>");
+        		else
+        			$("#ul_").append("<li class='ui-border-t'>"+
+		                     "   <div class='ui-list-info'>"+
+		              "  <h4 class='ui-nowrap'>"+obj[i].category.name+"</h4>"+
+		              " <p class='ui-nowrap'>"+obj[i].createDate+" 操作人：王小二</p>"+
+		              "  <div class='ui-badge-num'>"+obj[i].type+"："+obj[i].num+"</div>"+
+		           " </div>"+
+		       " </li>");
+        	}
+        }
         $('.ui-list li,.ui-tiled li').click(function(){
             if($(this).data('href')){
                 location.href= $(this).data('href');

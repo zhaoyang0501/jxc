@@ -48,7 +48,6 @@ public class MainActivity extends Activity {
 	  
 	  @JavascriptInterface
 	  public void getjson(final String url,final String callback) {  
-	        Toast.makeText(this, "js调用了java函数", Toast.LENGTH_SHORT).show();  
 	        new Thread() {  
 	            public void run(){  
 	            	try {
