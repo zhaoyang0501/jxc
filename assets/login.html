@@ -14,7 +14,7 @@
     
     <body ontouchstart>
         <header class="ui-header ui-header-positive ui-border-b">
-            <i class="ui-icon-return" onclick="history.back()"></i><h1>元器件进销存 </h1><button class="ui-btn">回首页</button>
+            <i class="ui-icon-return" onclick="history.back()"></i><h1>元器件进销存 </h1>
         </header>
         <section class="ui-container">
 
@@ -42,7 +42,7 @@
                    
                    
                     <div class="ui-btn-wrap">
-                        <a  class="ui-btn-lg ui-btn-primary" onclick="login()">
+                        <a  class="ui-btn-lg ui-btn-primary" onclick="fun_login()">
 		                 		  登录
 		                </a>
 		            </div>
@@ -56,30 +56,19 @@
  
         </section><!-- /.ui-container-->
         <script>
-        $(function(){
-        	window.app.getjson("categorys?1=123","init_categorys_callback");
-        })
-      	
-        function fun_openkclist(){
-        	//alert('kclist.html?category='+$("#categorys").val());
-        	 location.href='kclist.html?category='+$("#categorys").val();
+        function fun_login(){
+        	window.app.getjson("login?username="+$("#username").val()+"&password="+$("#password").val(),"login_callback");
         }
-        function init_categorys_callback(String){
+        function login_callback(String){
         	var obj = $.parseJSON(String);
-        	$("#categorys").empty();
-        	 $("#categorys").append("<option value=''>查询所有</option>");
-        	for(i=0;i<obj.length;i++){
-        		$("#categorys").append("<option value='"+obj[i].id+"'>"+obj[i].name+"</option>");
+        	if(obj.code!='200'){
+        		alert("用户名密码不正确或者网络异常！");
+        	}else{
+        		//alert('index.html?userid='+obj.user.id);
+        		 location.href='index.html?userid='+obj.user.id;
         	}
+        	
         }
-        $('.ui-list li,.ui-tiled li').click(function(){
-            if($(this).data('href')){
-                location.href= $(this).data('href');
-            }
-        });
-        $('.ui-header .ui-btn').click(function(){
-            location.href= 'index.html';
-        });
         </script>
     </body>
 </html>

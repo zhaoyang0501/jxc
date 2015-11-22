@@ -36,13 +36,14 @@ public class MainActivity extends Activity {
 	        s.setJavaScriptEnabled(true); 
 	        webView.setWebChromeClient(new WebChromeClient());
 	        webView.addJavascriptInterface(this, "app");
-	        webView.loadUrl("file:///android_asset/index.html"); 
+	        webView.loadUrl("file:///android_asset/login.html"); 
 	        webView.setWebViewClient(new WebViewClient(){
 	        	  public boolean shouldOverrideUrlLoading(WebView view, String url) { 
 	        	       view.loadUrl(url);
 	        	       return true;
 	        	  }
 	        	});
+	        webView.setWebChromeClient(new MyWebChromeClient()); 
 	        setContentView(webView);
 	}
 	  

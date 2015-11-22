@@ -48,13 +48,19 @@
  
         </section><!-- /.ui-container-->
         <script>
+        function GetQueryString(name)
+        {
+             var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+             var r = window.location.search.substr(1).match(reg);
+             if(r!=null)return  unescape(r[2]); return null;
+        }
         $('.ui-list li,.ui-tiled li').click(function(){
             if($(this).data('href')){
-                location.href= $(this).data('href');
+                location.href= $(this).data('href')+"?userid="+GetQueryString("userid");
             }
         });
         $('.ui-header .ui-btn').click(function(){
-            location.href= 'index.html';
+            location.href= 'index.html'+"?userid="+GetQueryString("userid");
         });
         </script>
     </body>

@@ -39,13 +39,13 @@
                         <label>起始日期</label>
                         <div class="ui-select-group">
                             <div class="ui-select">
-                                <select>
+                                <select id='b_y'>
                                     <option>2014</option>
                                     <option selected="">2015</option>
                                 </select>
                             </div>
                             <div class="ui-select">
-                                <select>
+                                <select  id='b_m'>
                                        <option value="01">01</option>
                                        <option value="02">02</option>
                                           <option value="03">03</option>
@@ -61,7 +61,7 @@
                                 </select>
                             </div>
                             <div class="ui-select">
-                                <select>
+                                <select  id='b_d'>
                                       <option value="01">01</option>
                                     <option value="02">02</option>
                                     <option value="03">03</option>
@@ -101,14 +101,14 @@
                         <label>终止日期</label>
                         <div class="ui-select-group">
                             <div class="ui-select">
-                                <select>
+                                <select id='e_y'>
                                     <option>2014</option>
                                     <option selected="">2015</option>
                                     <option>2016</option>
                                 </select>
                             </div>
                             <div class="ui-select">
-                                <select>
+                                <select id='e_m'>
                                     <option value="01">01</option>
                                        <option value="02">02</option>
                                           <option value="03">03</option>
@@ -124,7 +124,7 @@
                                 </select>
                             </div>
                             <div class="ui-select">
-                                <select>
+                                <select id='e_d'>
                                        <option value="01">01</option>
                                     <option value="02">02</option>
                                     <option value="03">03</option>
@@ -165,18 +165,17 @@
                            	入库/出库
                         </label>
                         <div class="ui-select">
-                                <select>
-                                 <option>全部</option>
-                                    <option>入库</option>
-                                    <option selected="">出库</option>
+                                <select id='mx_type'>
+                                 <option value="">全部</option>
+                                    <option value="1">入库</option>
+                                    <option value="2" selected="">出库</option>
                                 </select>
                             </div>
-                        </a>
                     </div>
                     
                    
                     <div class="ui-btn-wrap">
-               		 <a class="ui-btn-lg ui-btn-primary" href="mxlist.html" >
+               		 <a class="ui-btn-lg ui-btn-primary" onclick="fun_openmx()" >
 		                 		   查看明细
 		                </a>
 		            </div>
@@ -190,13 +189,26 @@
  
         </section><!-- /.ui-container-->
         <script>
+        function GetQueryString(name)
+        {
+             var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+             var r = window.location.search.substr(1).match(reg);
+             if(r!=null)return  unescape(r[2]); return null;
+        }
+        function fun_openmx(){
+        	var b=$("#b_y").val()+"-"+$("#b_m").val()+"-"+$("#b_d").val();
+        	var e=$("#e_y").val()+"-"+$("#e_m").val()+"-"+$("#e_d").val();
+        	var t=$("#mx_type").val();
+        	//alert( 'index.html?b='+b+'&e='+e+'&t='+t);
+            location.href= 'mxlist.html?b='+b+'&e='+e+'&t='+t+'&userid='+GetQueryString("userid");
+        }
         $('.ui-list li,.ui-tiled li').click(function(){
             if($(this).data('href')){
-                location.href= $(this).data('href');
+                location.href= $(this).data('href')+"?userid="+GetQueryString("userid");
             }
         });
         $('.ui-header .ui-btn').click(function(){
-            location.href= 'index.html';
+            location.href= 'index.html'+"?userid="+GetQueryString("userid");
         });
         </script>
     </body>

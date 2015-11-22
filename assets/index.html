@@ -45,7 +45,7 @@
                             </div>
                         </div>
                     </div>
-                    
+                    <!--  
               	 <div class="ui-form-item ui-border-b">
                         <label>日期</label>
                         <div class="ui-select-group">
@@ -110,7 +110,7 @@
                             </div>
                         </div>
                     </div>
-                    
+                    -->
                     <div class="ui-form-item ui-border-b">
                         <label>
                            	数量
@@ -129,9 +129,9 @@
                         </a>
                     </div>
                     <div class="ui-btn-wrap">
-               		 <button id="btid" class="ui-btn-lg ui-btn-primary" onclick="fun_buy()">
+                      <a  class="ui-btn-lg ui-btn-primary" onclick="fun_buy()">
 		                 		   确定
-		                </button>
+		                </a>
 		            </div>
                 </form>
             </div>
@@ -143,9 +143,16 @@
  
         </section><!-- /.ui-container-->
         <script>
-        
+        function GetQueryString(name)
+        {
+             var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+             var r = window.location.search.substr(1).match(reg);
+             if(r!=null)return  unescape(r[2]); return null;
+        }
         $(function(){
         	window.app.getjson("categorys?1=123","init_categorys_callback");
+        	//alert(window.location.href);
+        	//alert("onload"+GetQueryString("userid"));
         })
       	
         function init_categorys_callback(String){
@@ -157,7 +164,8 @@
         }
         
         function fun_buy(){
-        	var p="cid="+$("#categorys").val()+"&num="+$("#num").val()+"&price="+$("#price").val();
+        	var p="cid="+$("#categorys").val()+"&num="+$("#num").val()+"&price="+$("#price").val()+"&userid="+GetQueryString("userid");
+        	//alert(p);
         	window.app.getjson("buy?"+p,"buy_callback");
         }
         function buy_callback(result){
@@ -166,11 +174,11 @@
         
         $('.ui-list li,.ui-tiled li').click(function(){
             if($(this).data('href')){
-                location.href= $(this).data('href');
+                location.href= $(this).data('href')+"?userid="+GetQueryString("userid");
             }
         });
         $('.ui-header .ui-btn').click(function(){
-            location.href= 'index.html';
+            location.href= 'index.html'+"?userid="+GetQueryString("userid");
         });
         </script>
     </body>
